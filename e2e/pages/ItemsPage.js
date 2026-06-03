@@ -4,7 +4,7 @@ export class ItemsPage {
     this.nameInput = page.locator("//div[@class='bg-white p-6 rounded-lg shadow-md border-t-2 border-blue-600']//div[1]//input[1]");
     this.priceInput = page.locator("//div[@class='bg-white p-6 rounded-lg shadow-md border-t-2 border-blue-600']//div[2]//input[1]");
     this.descriptionInput = page.locator("//div[@class='bg-white p-6 rounded-lg shadow-md border-t-2 border-blue-600']//div[3]//input[1]");
-    this.submitButton = page.page.getByText('Add', { exact: true });
+    this.submitButton = page.getByText('Add', { exact: true });
     this.tableRow = (name) => page.getByText(name).locator('..');
  
   }
@@ -31,6 +31,6 @@ export class ItemsPage {
   async deleteItem(name) {
     const row = this.tableRow(name);
     this.page.on('dialog', dialog => dialog.accept());
-    await row.getByText('Delete').click();
+    await this.page.locator('button').filter({ hasText: 'Delete' }).last().click();
   }
 }

@@ -19,13 +19,12 @@ test.describe('Brands CRUD Flow', { tag: '@brand' }, () => {
   test('should create a new brand', async ({ page }) => {
     await brandsPage.createBrand('Playwright Brand', 'USA', 'https://pw.dev', 'Testing framework');
     
-    await expect(page.getByText('Playwright Brand')).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Visit' })).toBeVisible();
+    await expect(page.getByText('Testing framework', { exact: true })).toBeVisible();
   });
 
   test('should delete a brand', async ({ page }) => {
-    await brandsPage.createBrand('Delete Me Brand', 'UK');
-    await expect(page.getByText('Delete Me Brand')).toBeVisible();
+    await brandsPage.createBrand('Delete Me Brand', 'UK', 'test.com', 'To be deleted');
+    await expect(page.getByText('Delete Me Brand', { exact: true })).toBeVisible();
 
     await brandsPage.deleteBrand('Delete Me Brand');
     

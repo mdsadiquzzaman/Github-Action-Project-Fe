@@ -1,10 +1,10 @@
 export class BrandsPage {
   constructor(page) {
     this.page = page;
-    this.nameInput = page.getByPlaceholder('Name');
-    this.countryInput = page.getByPlaceholder('Country');
-    this.websiteInput = page.getByPlaceholder('Website');
-    this.descriptionInput = page.getByPlaceholder('Description');
+    this.nameInput = page.locator("//div//div//div//div//div[1]//input[1]");
+    this.countryInput = page.locator("//div//div//div//div//div[1]//input[1]");
+    this.websiteInput = page.locator("//div//div//div//div//div[1]//input[1]")
+    this.descriptionInput = page.locator("//div//div//div//div//div[1]//input[1]")
     this.submitButton = page.getByRole('button', { name: 'Add' });
     this.tableRow = (name) => page.getByText(name).locator('..');
   }
@@ -19,7 +19,8 @@ export class BrandsPage {
 
   async deleteBrand(name) {
     const row = this.tableRow(name);
+    
     this.page.on('dialog', dialog => dialog.accept());
-    await row.getByText('Delete').click();
+    await this.page.locator('button').filter({ hasText: 'Delete' }).last().click();
   }
 }

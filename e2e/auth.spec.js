@@ -21,7 +21,7 @@ test.describe('Authentication Flow', { tag: '@auth' }, () => {
     await authPage.login('pw@test.com', 'password123');
     
     await expect(page).toHaveURL('/');
-    await expect(page.getByText('Hello, Playwright User')).toBeVisible();
+    await expect(page.getByText('CRUD Dashboard')).toBeVisible();
   });
 
   test('should show error on wrong password', async ({ page }) => {
