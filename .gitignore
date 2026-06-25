@@ -17,7 +17,6 @@
 /out
 .vercel
 .vercelignore
-.github
 .git
 .husky
 /playwright-report
